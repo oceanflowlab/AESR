@@ -2076,7 +2076,7 @@ async def main():
     )
     parser.add_argument(
         "--enhance-image-candidates",
-        default="pencil.png,pencil_full_body.png,image.png,reference.png",
+        default="pencil.png,pencil_full_body.png,image.png,reference.png,reference.webp,reference.jpg,reference.jpeg,image.webp",
         help="Track1 / 目录模式：逗号分隔，按优先级选用第一张存在的参考图（默认 pencil.png 优先）。",
     )
     parser.add_argument(

@@ -56,12 +56,37 @@ Download the official IPVG 2026 Track 1 test set from the
 ```bash
 conda activate aesr
 python scripts/download_testset.py
+python scripts/prepare_track1_inputs.py
 ```
 
 The script verifies the official archive checksum and extracts it to
-`data/IPVG2026-Test-Track1/`. The downloaded data remains ignored by Git. A
-text-only smoke-test prompt is also provided at
-`examples/data/input/id001/prompt.txt`.
+`data/IPVG2026-Test-Track1/`. The preparation command converts `eval.json` and
+the flat image directory into the per-sample layout expected by Stage I:
+
+```text
+data/IPVG2026-Test-Track1/
+├── eval.json
+├── images/
+│   ├── id001.webp
+│   └── ...
+└── inputs/
+    ├── id001/
+    │   ├── prompt.txt
+    │   └── reference.webp
+    └── ...
+```
+
+The downloaded and prepared data remain ignored by Git. To prepare prompts for
+metric evaluation, run:
+
+```bash
+python evaluation/prepare_prompts.py data/IPVG2026-Test-Track1 \
+  --output data/IPVG2026-Test-Track1/eval_prompts
+```
+
+Evaluation matches `id001_prompt0.mp4` to `eval_prompts/id001.txt` and
+`images/id001.webp`. See [`evaluation/README.md`](evaluation/README.md) for the
+complete layout and commands.
 
 ## Playbooks
 
@@ -80,7 +105,7 @@ This command exercises the Stage I orchestration and writes an enhanced prompt a
 ```bash
 python src/ace_i2v_qwen35_397b_a17b_track1_seedance2_hoi.py \
   --mode enhance_prompt_only \
-  --enhance-input-root examples/data/input \
+  --enhance-input-root data/IPVG2026-Test-Track1/inputs \
   --playbook-file playbooks/playbook_final.json \
   --enhance-output-txt enhanced_prompt.txt \
   --enhance-output-json enhanced_prompt.json \

@@ -111,6 +111,36 @@ python evaluation/prepare_prompts.py data/IPVG2026-Test-Track1 \
 ```
 
 Then use `data/IPVG2026-Test-Track1/images` as the reference-image directory.
+After preparation, the relevant paths are:
+
+```text
+data/IPVG2026-Test-Track1/
+├── eval.json
+├── images/
+│   ├── id001.webp
+│   └── ...
+└── eval_prompts/
+    ├── id001.txt
+    └── ...
+```
+
+Generated candidates may be stored separately, but their sample-ID prefix must
+match the prompt and reference image:
+
+```text
+local-data/videos/
+├── id001_prompt0.mp4
+└── id002_prompt0.mp4
+```
+
+For this layout, run:
+
+```bash
+bash evaluation/run_evaluation.sh \
+  local-data/videos \
+  data/IPVG2026-Test-Track1/eval_prompts \
+  data/IPVG2026-Test-Track1/images
+```
 
 ## Run metrics
 
