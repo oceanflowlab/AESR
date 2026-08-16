@@ -1,0 +1,57 @@
+.env
+.conda/
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# Local inputs and generated runs
+examples/data/input/
+examples/data/images/
+examples/data/references/
+examples/data/draft_videos/
+runs/
+outputs/
+/data/
+Results_*/
+Submission/
+All/
+selection_manifest.json
+selection_manifest.csv
+selection_skipped.csv
+*.mp4
+*.mov
+*.webm
+*.png
+*.jpg
+*.jpeg
+*.zip
+*_metadata.json
+metadata.json
+*.log
+*.pptx
+宣传稿/rendered*/
+宣传稿/
+*宣传稿*
+MM26_AESR/公众号/
+
+# Keep the text-only smoke-test prompt while ignoring real local media.
+!examples/data/input/
+!examples/data/input/id001/
+!examples/data/input/id001/prompt.txt
+
+# Never version downloaded evaluator checkouts or model weights.
+evaluation/ConsisID/
+evaluation/VBench/
+evaluation/MSVBench/
+evaluation/models/
+
+# Provider and debug artifacts
+*_metadata_failed.json
+*_critique.json
+*_critique_typed.json
+seedance_edit_out*
+
+# Paper packages and project-page media are maintained outside this code repo.
+/MM26_AESR/
+/project-page/
+/index.html

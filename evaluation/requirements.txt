@@ -1,0 +1,14 @@
+# Extra packages for evaluation only. Install after activating the AESR Conda environment.
+# PyTorch must match your CUDA runtime; install it from https://pytorch.org/get-started/locally/.
+av>=14.0.0
+accelerate>=1.7.0
+numpy>=1.26.4,<2.0.0
+Pillow>=10.0.0
+sentence-transformers>=3.0.0
+transformers>=4.51.0
+
+# The face evaluator supplied with the original protocol uses these packages.
+insightface==0.7.3
+onnx==1.17.0
+onnxruntime-gpu==1.19.2; platform_system != "Darwin"
+onnxruntime==1.19.2; platform_system == "Darwin"
