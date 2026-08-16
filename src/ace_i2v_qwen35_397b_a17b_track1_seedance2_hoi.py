@@ -7,7 +7,7 @@ Track1 变体（基于 ace_i2v_qwen35_397b_a17b_IPT2V.py）：人物 ID 保持�
 2) 增强前 20 个 id 的 prompt：`--mode enhance_prompt_only --limit 20`（id 按数字序取前 20），
    结果写入各 `id*/video_prompt_ace_enhanced.txt`。
 
-- 默认 Playbook：`seedance2_hoi_track1_playbook_working.json`（由 `seedance2_hoi_merged_playbook_templates_from_seedance2.json` 复制一份后在此脚本中迭代；仓库内已带初始副本）。
+- 默认 Playbook：`playbooks/playbook_final.json`（由 HOI+document 初始版在 Track 1 上迭代得到的比赛最终版本）。
 - `enhance_prompt_only` + `track1_seedance_pencil`：增强结果写入各 `id*/video_prompt_ace_enhanced.txt`（不覆盖 `video_prompt.txt`）。
 - `--tasks-from track1_seedance_pencil`：instruction = `out_seedance2_videos_same_crop/id*/video_prompt.txt`；参考图 = `out_gpt_image2_pencil_same_crop/id*/`（默认优先 `pencil.png`）。
 - Epoch0 参考 mp4：与 prompt 同根的 `id*/id*.mp4`；请将 `--original-video-dir` 指向 `out_seedance2_videos_same_crop`。
@@ -1902,7 +1902,7 @@ async def main():
     repo_root = default_base_dir.parent
     track1_prompt_default = (repo_root / "examples" / "data" / "draft_videos").resolve()
     track1_pencil_default = (repo_root / "examples" / "data" / "references").resolve()
-    merged_playbook_default = (repo_root / "playbooks" / "initial_playbook.json").resolve()
+    merged_playbook_default = (repo_root / "playbooks" / "playbook_final.json").resolve()
     parser = argparse.ArgumentParser(
         description="Track1 ACE：铅笔参考图 + Seedance video_prompt；默认 Playbook 为 seedance2+HOI 合并版。"
     )
@@ -1951,7 +1951,7 @@ async def main():
     parser.add_argument(
         "--playbook-file",
         default=str(merged_playbook_default),
-        help="Playbook 文件路径（默认 seedance2_hoi_track1_playbook_working.json，可由合并版复制后迭代）。",
+        help="Playbook 文件路径（默认 playbooks/playbook_final.json）。",
     )
     parser.add_argument(
         "--tasks-from",

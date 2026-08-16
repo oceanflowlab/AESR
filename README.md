@@ -12,6 +12,7 @@
 <p align="center">
   <a href="#installation">Installation</a> ·
   <a href="#dataset">Dataset</a> ·
+  <a href="#playbooks">Playbooks</a> ·
   <a href="#inference">Inference</a> ·
   <a href="#citation">Citation</a>
 </p>
@@ -62,6 +63,14 @@ The script verifies the official archive checksum and extracts it to
 text-only smoke-test prompt is also provided at
 `examples/data/input/id001/prompt.txt`.
 
+## Playbooks
+
+- `playbooks/playbook_final.json`: final competition playbook after combining
+  HOI priors, official-document guidance, and Track 1 warmup updates.
+- `playbooks/initial_playbook.json`: merged HOI and official-document playbook
+  before Track 1 warmup.
+- `playbooks/empty_playbook.json`: empty structure for learning from scratch.
+
 ## Inference
 
 ### Prompt enhancement only
@@ -72,7 +81,7 @@ This command exercises the Stage I orchestration and writes an enhanced prompt a
 python src/ace_i2v_qwen35_397b_a17b_track1_seedance2_hoi.py \
   --mode enhance_prompt_only \
   --enhance-input-root examples/data/input \
-  --playbook-file playbooks/initial_playbook.json \
+  --playbook-file playbooks/playbook_final.json \
   --enhance-output-txt enhanced_prompt.txt \
   --enhance-output-json enhanced_prompt.json \
   --limit 1
@@ -98,6 +107,9 @@ The script runs critique, typed issue normalization, missing-visual repair, and 
 python -m unittest discover -s tests -v
 python -m compileall -q src evaluation
 ```
+
+For the complete benchmark setup and metric commands, see
+[`evaluation/README.md`](evaluation/README.md).
 
 ## Acknowledgement
 

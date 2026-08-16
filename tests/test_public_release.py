@@ -1,3 +1,4 @@
+import hashlib
 import json
 import sys
 import tempfile
@@ -38,6 +39,18 @@ class PublicReleaseTests(unittest.TestCase):
             payload = json.loads(path.read_text(encoding="utf-8"))
             self.assertEqual(set(payload), {"strategies", "templates", "pitfalls"})
             self.assertTrue(all(isinstance(payload[key], list) for key in payload))
+
+    def test_final_playbook_matches_competition_release(self):
+        path = ROOT / "playbooks" / "playbook_final.json"
+        payload = json.loads(path.read_text(encoding="utf-8"))
+
+        self.assertEqual(len(payload["strategies"]), 68)
+        self.assertEqual(len(payload["templates"]), 6)
+        self.assertEqual(len(payload["pitfalls"]), 5)
+        self.assertEqual(
+            hashlib.sha256(path.read_bytes()).hexdigest(),
+            "2537aff312a098b1de2bc94d44efae94b68020bbe08268d886026e2c8955e415",
+        )
 
     def test_evaluation_score_and_aggregation(self):
         from aggregate_results import aggregate
