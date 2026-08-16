@@ -112,6 +112,23 @@ python src/ace_i2v_qwen35_397b_a17b_track1_seedance2_hoi.py \
   --limit 1
 ```
 
+| Argument | Description |
+| --- | --- |
+| `--mode enhance_prompt_only` | Runs Stage I prompt enhancement only; it does not generate or edit videos. |
+| `--enhance-input-root` | Root containing `idXXX/` folders with `prompt.txt` and a supported reference image such as `reference.webp`. |
+| `--playbook-file` | Playbook used by the enhancement agent. `playbook_final.json` is the final competition version. |
+| `--enhance-output-txt` | Enhanced-prompt filename written inside each processed `idXXX/` folder. |
+| `--enhance-output-json` | Structured generation-record filename written beside the enhanced prompt. |
+| `--limit 1` | Processes only the first sample for a quick check. Remove this argument, or set it to `200`, for the complete test set. |
+
+For example, processing `id001` writes:
+
+```text
+data/IPVG2026-Test-Track1/inputs/id001/
+├── enhanced_prompt.txt
+└── enhanced_prompt.json
+```
+
 ### Complete repair workflow
 
 `scripts/run_repair_example.sh` is a template for one sample. Set `VIDEO`, `PROMPT`, `REFERENCE`, and `OUT` to authorized local paths before running it:
