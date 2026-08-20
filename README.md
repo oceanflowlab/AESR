@@ -10,6 +10,10 @@
 </p>
 
 <p align="center">
+  <a href="https://andyplus1.github.io/AESR_page/"><img src="https://img.shields.io/badge/Project-Page-97ca00.svg" alt="Project Page" /></a>
+</p>
+
+<p align="center">
   <a href="#installation">Installation</a> ·
   <a href="#dataset">Dataset</a> ·
   <a href="#playbooks">Playbooks</a> ·
